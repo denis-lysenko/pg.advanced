@@ -32,7 +32,7 @@ pg_config --bindir
 sudo -Eupostgres /usr/lib/postgresql/16/
 bin/psql -tA -c "show data_directory;" 
 /var/lib/postgresql/16/main
-#или /usr/lib/postgresql/16/bin/pg_ctl --status
+#или sudo -u postgres pg_lsclusters
 ```
 
 Скорректируем переменные и создадим алиасы для работы:

@@ -56,13 +56,13 @@ den@:~$sudo docker pull postgres:14
 ```console
 den@:~$sudo docker network create -d bridge postgres
 den@:~$sudo docker run -d \
-	--name hw2-pg1 \
-	-e POSTGRES_PASSWORD=Password \
-	-e PGDATA=/var/lib/postgresql/data/pgdata \
-	-v /var/lib/postgres:/var/lib/postgresql/data \
-	--network postgres \
-	-p 5432:5432 \
-	postgres:14
+--name hw2-pg1 \
+-e POSTGRES_PASSWORD=Password \
+-e PGDATA=/var/lib/postgresql/data/pgdata \
+-v /var/lib/postgres:/var/lib/postgresql/data \
+--network postgres \
+-p 5432:5432 \
+postgres:14
 den@:~$5f3b42b5a7afb318c49d6a30cc50b31a34a3543eb035f38e8c8fe69af2f2be21
 ```
 
@@ -114,6 +114,7 @@ postgres=#
 ```
 
 ## 6. Подключитесь из контейнера с клиентом к контейнеру с сервером и создайте таблицу с данными о перевозках
+
 Создадим БД и наполним данными
 
 ```console
