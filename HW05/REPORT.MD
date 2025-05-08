@@ -376,12 +376,6 @@ echo "tags:
     nofailover: true" >>/etc/patroni/config.yml
 ```
 
-и включим генерацию журналов на нем:
-
-```sql
-alter system set archive_mode=always;
-```
-
 ```console
 systemctl restart patroni
 patronictl list
@@ -390,13 +384,6 @@ patronictl list
 +--------+--------------+---------+-----------+----+-----------+------------------+
 | u6     | 192.168.0.86 | Replica | streaming | 15 |         0 | nofailover: true |
 +--------+--------------+---------+-----------+----+-----------+------------------+
-```
-
-```sql
-postgres=# show archive_mode ;
- archive_mode
---------------
- always
 ```
 
 Инициализируем инстанс РК:
@@ -450,11 +437,12 @@ chmod 600 $(getent passwd "postgres" | cut -d: -f6)/.pgpass
 ```console
 sudo -Eu postgres psql -t  <<SQL
 ALTER SYSTEM SET archive_command='/usr/bin/pg_probackup archive-push -B /pgsql/pg_backup --instance PGPBACKUP1 -U backup -w --wal-file-path=%p --wal-file-name=%f --overwrite --compress';
-ALTER SYSTEM SET archive_mode TO 'on';
+ALTER SYSTEM SET archive_mode TO 'always';
 ALTER SYSTEM SET wal_keep_size TO 2048;
 ALTER SYSTEM SET max_wal_senders=10;
 ALTER SYSTEM SET archive_timeout=240;
 SQL
+
 systemctl restart patroni
 ```
 
