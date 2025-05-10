@@ -127,7 +127,7 @@ backup_name                   modified             wal_file_name            stor
 base_000000010000000000000007 2025-05-10T07:55:38Z 000000010000000000000007 default
 ```
 
-Настраиваем генерацию собственных WAL и архивирование:
+Настраиваем генерацию собственных WAL и архивирование на реплике u9:
 
 ```console
 sudo -Eupostgres psql -t<< EOL
@@ -140,7 +140,7 @@ EOL
 sudo systemctl restart postgresql
 ```
 
-Настраиваем pg_bench и делаем небольшой прогон для генерации WAL:
+Настраиваем pg_bench и делаем небольшой прогон для генерации WAL на мастере u8:
 
 ```console
 sudo -Eupostgres createdb benchmark
