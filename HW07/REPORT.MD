@@ -211,7 +211,7 @@ postgres=#
 PS E:\_otus\HW07> minikube service postgres  --url
 http://192.168.0.196:31740
 
-kubectl --context=minikube run pgbox --image=postgres:14 --rm -it --restart=Never -- bash -c "export PGPASSWORD=secret && 
+PS E:\_otus\HW07> kubectl --context=minikube run pgbox --image=postgres:14 --rm -it --restart=Never -- bash -c "export PGPASSWORD=secret && 
              psql -v ON_ERROR_STOP=1 -P pager=off --single-transaction --host=192.168.0.196 --port=31740 \
                   --username=postgres --dbname=postgres \
                   --command='SELECT version();'"
